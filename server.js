@@ -1,6 +1,5 @@
 import express from 'express';
 import bodyParser from "body-parser";
-import bcrypt from 'bcrypt-nodejs'
 import cors from 'cors';
 import { register } from "./src/controllers/registerController.js";
 import { signIn } from "./src/controllers/signInController.js";
@@ -23,9 +22,9 @@ app.get('/', (req, res) => res.json({
     project_github: 'https://github.com/RaynerMDZ/face-recognition-app-backend'
 }));
 
-app.post('/sign-in', (req, res) => signIn(req, res, mysql, bcrypt));
+app.post('/sign-in', (req, res) => signIn(req, res, mysql));
 
-app.post('/register', (req, res) => register(req, res, mysql, bcrypt));
+app.post('/register', (req, res) => register(req, res, mysql));
 
 app.get('/profile/:id', (req, res) => getProfile(req, res, mysql));
 

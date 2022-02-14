@@ -1,4 +1,6 @@
-export const signIn = (req, res, mysql, bcrypt) => {
+import bcrypt from "bcryptjs";
+
+export const signIn = (req, res, mysql) => {
     if (req.body) {
 
         let {email, password} = req.body;

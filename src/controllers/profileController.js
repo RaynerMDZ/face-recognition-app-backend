@@ -1,10 +1,18 @@
-export const getProfile = (req, res, mysql) => {
-    const userId  = req.params.id;
+export const getProfile = async (req, res, mysql) => {
+    try {
+        const userId  = req.params.id;
 
-    mysql
-        .select('*')
-        .from('users')
-        .where('id', '=', userId)
-        .then(data => (data.length) ? res.json(data[0]) : res.status(400).json('User not found'))
-        .catch(() => res.status(400).json('Error getting user'));
+        const user = await mysql
+            .select('*')
+            .from('users')
+            .where('id', '=', userId);
+
+        if (user && user.length > 0) {
+            return res.json(user[0]);
+        }
+        return res.status(400).json('User not found');
+
+    } catch (err) {
+        return res.status(400).json('Error getting user');
+    }
 }
