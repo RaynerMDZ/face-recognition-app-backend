@@ -15,7 +15,13 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Root
-app.get('/', (req, res) => res.json('Server is working.'));
+app.get('/', (req, res) => res.json({
+    name: 'Rayner Mendez',
+    role: 'Software Engineer',
+    linkedin: 'https://www.linkedin.com/in/raynermendez/',
+    github: 'https://github.com/RaynerMDZ',
+    project_github: 'https://github.com/RaynerMDZ/face-recognition-app-backend'
+}));
 
 app.post('/sign-in', (req, res) => signIn(req, res, mysql, bcrypt));
 
