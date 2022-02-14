@@ -12,17 +12,20 @@ export const handleApiCall = (req, res) => {
         .catch(err => res.status(400).json('Unable to call Clarifai api.'));
 }
 
-export const incrementEntries = (req, res, mysql) => {
-    const { id } = req.body;
+export const incrementEntries = async (req, res, mysql) => {
+    try {
+        const { id } = req.body;
 
-    mysql('users')
-        .where('id', id)
-        .increment('entries', 1)
-        .then(() =>
-            mysql
-                .select('entries')
-                .from('users')
-                .where('id', id)
-                .then(data => res.json(data[0].entries)))
-        .catch(() => res.status(400).json('Unable to get entries.'));
+        await mysql('users').where('id', id).increment('entries', 1);
+        const results =  await mysql.select('entries').from('users').where('id', id);
+
+        if (results && results.length > 0) {
+            return res.status(200).json(results[0].entries);
+        }
+
+        return res.status(400).json({message: 'User not found'});
+    }
+    catch (err) {
+        res.status(400).json('Unable to get entries.')
+    }
 }

@@ -1,7 +1,7 @@
 import knex from "knex";
-import { mysqlConfig } from "./mysqlConfig.js";
+import { localMysqlConfig } from "./localMysqlConfig.js";
 
 export const knexConfig = knex({
     client: 'mysql2',
-    connection: mysqlConfig
+    connection: localMysqlConfig
 })

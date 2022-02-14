@@ -35,6 +35,6 @@ app.post('/imageUrl', (req, res) => handleApiCall(req, res));
 
 // const PORT = process.env.BACKEND_PORT;
 const PORT = process.env.PORT;
-app.listen(PORT || 3000, () => {
+app.listen(PORT || 8080, () => {
     console.log(`App is running on port ${PORT}.`)
 });
