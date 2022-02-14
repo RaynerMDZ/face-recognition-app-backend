@@ -14,6 +14,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get('/', (req, res) => res.json('Server is working.'));
+
 app.post('/sign-in', (req, res) => signIn(req, res, mysql, bcrypt));
 
 app.post('/register', (req, res) => register(req, res, mysql, bcrypt));
