@@ -24,7 +24,8 @@ app.put('/image', (req, res) => incrementEntries(req, res, mysql));
 
 app.post('/imageUrl', (req, res) => handleApiCall(req, res));
 
-const PORT = process.env.BACKEND_PORT;
-app.listen(PORT, () => {
+// const PORT = process.env.BACKEND_PORT;
+const PORT = process.env.PORT;
+app.listen(PORT || 3000, () => {
     console.log(`App is running on port ${PORT}.`)
 });
