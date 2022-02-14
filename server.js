@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from "body-parser";
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt-nodejs'
 import cors from 'cors';
 import { register } from "./src/controllers/registerController.js";
 import { signIn } from "./src/controllers/signInController.js";
