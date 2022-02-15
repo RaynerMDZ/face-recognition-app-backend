@@ -40,7 +40,7 @@ export const register = async (req, res, mysql) => {
                 .where('id', '=', id);
 
             if (returnedUser && returnedUser.length > 0) {
-                return res.json(returnedUser);
+                return res.json(returnedUser[0]);
             }
 
             return res.status(400).json({message: `Could not register user ${name}`});
